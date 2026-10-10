@@ -1,0 +1,19 @@
+{% extends 'base-crud.html' %}
+{% load static %}
+{% block title %}Alterar dados do Paciente{% endblock %}
+{% block content %}
+<h1 class="mt-5">
+    Alterar dados do Paciente
+</h1>
+<hr>
+{% if error %}<p>{{ error }}</p>{% endif %}
+<form action="{% url 'alterar_paciente' paciente.codigo_paciente %}" method="POST">
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <div class="d-flex justify-content-start mt-5 mb-5">
+        <button type="submit" class="btn btn-primary">Alterar</button>
+    </div>
+</form>
+
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

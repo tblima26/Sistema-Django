@@ -1,75 +1,63 @@
-<header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-  <div class="container">
-    <!-- Logo ou Nome do Projeto -->
-    <a class="navbar-brand fw-bold text-primary" href="{% url 'index' %}">MeuProjeto</a>
+<header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-3">
+        <div class="container-fluid">
+            
+            <!-- 1. Sistema Clínico como Home -->
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+                <i class="fa-solid fa-notes-medical text-success fa-lg"></i>
+                <span>Sistema Clínico</span>
+            </a>
 
-    <!-- Botão Responsivo para Celulares -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#userNavbar"
-      aria-controls="userNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <!-- Botão responsivo mobile -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Conteúdo do Header -->
-    <div class="collapse navbar-collapse" id="userNavbar">
+            <!-- Links de navegação -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <!-- 2. Usuário como Dropdown contendo "Novo Usuário" -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white d-flex align-items-center gap-2" 
+                           href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user text-success"></i> Usuário
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 mt-2">
+                            <li>
+                                <a class="dropdown-item py-2" href="novoPaciente/">
+                                    <i class="fa-solid fa-user-plus text-success me-2"></i> Novo Usuário
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
-      <!-- Links de Navegação (Placeholder) -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Dashboard</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPacientes" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Pacientes
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPacientes">
-            <li>
-              <a class="dropdown-item" href="{% url 'novo-paciente' %}">
-                <i class="fa-solid fa-user-plus me-2"></i> Cadastrar
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Clientes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Relatórios</a>
-        </li>
-      </ul>
+                <!-- 3. Bolinha com ícone do Font Awesome no final, sendo dropdown para Deslogar -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center bg-secondary bg-opacity-25 rounded-circle p-0" 
+                           href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" 
+                           style="width: 60px; height: 60px;" title="Conta de {{ user.username }}">
+                            <!-- Ícone do Font Awesome dentro da bolinha -->
+                            <i class="fa-solid fa-user text-white"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                            <li>
+                                <h6 class="dropdown-header text-muted small">Logado como: <strong>{{ user.username }}</strong></h6>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger py-2" href="logout/">
+                                    <i class="fa-solid fa-right-from-bracket me-2"></i> Deslogar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
-      <!-- Dropdown do Usuário à Direita -->
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-dark fw-semibold" href="#"
-            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="bg-light border rounded-circle d-flex justify-content-center align-items-center"
-              style="width: 32px; height: 32px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-person-fill text-secondary" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-              </svg>
             </div>
-            <span>{{ user.username|default:"Minha Conta" }}</span>
-          </a>
-
-          <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-            <li>
-              <h6 class="dropdown-header text-muted small">Logado como <b>{{ user.username }}</b></h6>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item text-danger d-flex align-items-center gap-2 py-2" href="{% url 'logout' %}">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Sair</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-    </div>
-  </div>
+        </div>
+    </nav>
 </header>

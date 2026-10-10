@@ -1,8 +1,10 @@
 {% extends 'base-crud.html' %}
-{% block title %}CRUD | Triagem - Sucesso! {% endblock %}
+{% block title %}
+    Triagem realizada com sucesso
+{% endblock %}
 {% block content %}
-<script>
-  alert("Triagem de paciente realizada com sucesso!")
-  window.location.href = '/novoPaciente';
-</script>
+    <script>
+        alert("Triagem de paciente realizada com sucesso!");
+        window.location.href = "/";
+    </script>
 {% endblock %}
